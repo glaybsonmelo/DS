@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "doublevector.h"
-#include <iostream>
 
 void print(DoubleVector& list) {
     if(!list.empty()){
@@ -9,34 +8,31 @@ void print(DoubleVector& list) {
     	printf("\n");
     }else printf("Lista Vazia\n");
 }
-// void remove(DoubleVector& list) {
-//     if(!list.empty()){
-//     	while(!list.empty()){
-//     	    printf("%d ", list.pop_back());
-//     	    if(!list.empty()) printf("%d ", list.pop_front());
-//     	}
-//     	printf("\n");
-//     }
-// }
+void remove(DoubleVector& list) {
+    if(!list.empty()){
+    	while(!list.empty()){
+    	    printf("%d ", list.pop_back());
+    	    if(!list.empty()) printf("%d ", list.pop_front());
+    	}
+    	printf("\n");
+    }
+}
 void copy(DoubleVector& origin, DoubleVector& destiny){
     for(int k = 0; k < origin.size(); k++){
         destiny.push_back(origin.at(k));
-				// std::cout << "copie " << origin.at(k) << '\n';
     }
 }
 int main() {
     int n, k;
     scanf("%d", &n);
-
-
 	//Testa o construtor default
 	DoubleVector listaPares, listaImpares;
 
-	//Testa as funces push_back
+	//Testa as funcoes push_back
 	for(int i = 0; i < n; ++i) {
 	    scanf("%d", &k);
 	    if(k % 2 == 0) listaPares.push_back(k);
-		  else listaImpares.push_back(k);
+		else listaImpares.push_back(k);
 	}
 	printf("Testa o construtor default, funcoes push_back e at\n");
 	print(listaPares);
@@ -53,91 +49,108 @@ int main() {
 	print(listaImpares);
 
 	printf("Testa o construtor com parametro n\n");
-	
 	DoubleVector listaSomentePar(listaPares.size()), listaSomenteImpar(listaImpares.size());
 	copy(listaPares, listaSomentePar);
 	copy(listaImpares, listaSomenteImpar);
 	print(listaSomentePar);
 	print(listaSomenteImpar);
 
-	// DoubleVector listaSomentePar(n);
-	// for(int i = 0; i < n; ++i) {
-	//     scanf("%d", &k);
-	//     if(k % 2 == 0) listaSomentePar.push_back(k);
-	// 	  else listaSomentePar.push_back(k);
-	// }
-	// print(listaSomentePar);
+	printf("Testa a funcao replaceAt\n");
+	if(listaSomentePar.size() > 10){
+	    int value, index;
+	    scanf("%d %d", &value, &index);
+	    listaSomentePar.replaceAt(value, index);
+	}
+	if(listaSomenteImpar.size() > 10){
+	    int value, index;
+	    scanf("%d %d", &value, &index);
+	    listaSomenteImpar.replaceAt(value, index);
+	}
+	print(listaSomentePar);
+	print(listaSomenteImpar);
 
+	printf("Testa a funcao removeAt\n");
+	if(listaSomentePar.size() > 10){
+	    int index;
+	    scanf("%d", &index);
+	    listaSomentePar.remove(index);
+	}
+	if(listaSomenteImpar.size() > 10){
+	    int index;
+	    scanf("%d", &index);
+	    listaSomenteImpar.remove(index);
+	}
+	print(listaSomentePar);
+	print(listaSomenteImpar);
 
-	// printf("Testa a funcao removeAt\n");
-	// if(listaSomentePar.size() > 10){
-	//     int index;
-	//     scanf("%d", &index);
-	//     listaSomentePar.remove(index);
-	// }
-	// if(listaSomenteImpar.size() > 10){
-	//     int index;
-	//     scanf("%d", &index);
-	//     listaSomenteImpar.remove(index);
-	// }
-	// print(listaSomentePar);
-	// print(listaSomenteImpar);
+	printf("Testa a funcao insert\n");
+	if(listaSomentePar.size() > 10){
+	    int value, index;
+	    scanf("%d %d", &value, &index);
+	    listaSomentePar.insert(value, index);
+	}
+	if(listaSomenteImpar.size() > 10){
+	    int value, index;
+	    scanf("%d %d", &value, &index);
+	    listaSomenteImpar.insert(value, index);
+	}
+	print(listaSomentePar);
+	print(listaSomenteImpar);
 
+	printf("Testa a funcao removeAll\n");
+	if(listaSomentePar.size() > 10){
+	    int value;
+	    scanf("%d", &value);
+	    listaSomentePar.removeAll(value);
+	}
+	if(listaSomenteImpar.size() > 10){
+	    int value;
+	    scanf("%d", &value);
+	    listaSomenteImpar.removeAll(value);
+	}
+	print(listaSomentePar);
+	print(listaSomenteImpar);
 
-	// printf("Testa a funcao removeAll\n");
-	// if(listaSomentePar.size() > 10){
-	//     int value;
-	//     scanf("%d", &value);
-	//     listaSomentePar.removeAll(value);
-	// }
-	// if(listaSomenteImpar.size() > 10){
-	//     int value;
-	//     scanf("%d", &value);
-	//     listaSomenteImpar.removeAll(value);
-	// }
-	// print(listaSomentePar);
-	// print(listaSomenteImpar);
+	printf("Testa a funcao push_front\n");
+	if(listaSomentePar.size() >= 2){
+	    int value;
+	    scanf("%d", &value);
+	    listaSomentePar.push_front(value);
+	    scanf("%d", &value);
+	    listaSomentePar.push_front(value);
+	}
+	if(listaSomenteImpar.size() >= 2){
+	    int value;
+	    scanf("%d", &value);
+	    listaSomenteImpar.push_front(value);
+	    scanf("%d", &value);
+	    listaSomenteImpar.push_front(value);
+	}
+	print(listaSomentePar);
+	print(listaSomenteImpar);
 
-	// printf("Testa a funcao push_front\n");
-	// if(listaSomentePar.size() >= 2){
-	//     int value;
-	//     scanf("%d", &value);
-	//     listaSomentePar.push_front(value);
-	//     scanf("%d", &value);
-	//     listaSomentePar.push_front(value);
-	// }
-	// if(listaSomenteImpar.size() >= 2){
-	//     int value;
-	//     scanf("%d", &value);
-	//     listaSomenteImpar.push_front(value);
-	//     scanf("%d", &value);
-	//     listaSomenteImpar.push_front(value);
-	// }
-	// print(listaSomentePar);
-	// print(listaSomenteImpar);
+	printf("Testa a funcao concat\n");
+	DoubleVector listaConcat1(listaSomenteImpar.size());
+	copy(listaSomenteImpar, listaConcat1);
+	listaConcat1.concat(listaSomentePar);
+	DoubleVector listaConcat2(listaSomentePar.size());
+	copy(listaSomentePar, listaConcat2);
+	listaConcat2.concat(listaSomenteImpar);
+	print(listaConcat1);
+	print(listaConcat2);
+	print(listaSomentePar);
+	print(listaSomenteImpar);
 
-	// printf("Testa a funcao concat\n");
-	// DoubleVector listaConcat1(listaSomenteImpar.size());
-	// copy(listaSomenteImpar, listaConcat1);
-	// listaConcat1.concat(listaSomentePar);
-	// DoubleVector listaConcat2(listaSomentePar.size());
-	// copy(listaSomentePar, listaConcat2);
-	// listaConcat2.concat(listaSomenteImpar);
-	// print(listaConcat1);
-	// print(listaConcat2);
-	// print(listaSomentePar);
-	// print(listaSomenteImpar);
+	printf("Testa a funcao equals\n");
+	printf("%d\n", listaConcat1.equal(listaConcat2));
+	DoubleVector listaEqual(listaSomenteImpar.size());
+	copy(listaSomenteImpar, listaEqual);
+	printf("%d\n", listaEqual.equal(listaSomenteImpar));
 
-	// printf("Testa a funcao equals\n");
-	// printf("%d\n", listaConcat1.equals(listaConcat2));
-	// DoubleVector listaEqual(listaSomenteImpar.size());
-	// copy(listaSomenteImpar, listaEqual);
-	// printf("%d\n", listaEqual.equals(listaSomenteImpar));
+	printf("Testa a funcao equals\n");
+	printf("%d\n", listaConcat1.equal(listaConcat2));
 
-	// printf("Testa a funcao equals\n");
-	// printf("%d\n", listaConcat1.equals(listaConcat2));
-
-	// printf("Testa a funcao pop_back e pop_front\n");
-	// remove(listaSomentePar);
-	// remove(listaSomenteImpar);
+	printf("Testa a funcao pop_back e pop_front\n");
+	remove(listaSomentePar);
+	remove(listaSomenteImpar);
 }
