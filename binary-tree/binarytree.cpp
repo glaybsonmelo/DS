@@ -69,7 +69,6 @@ int BinaryTree<T>::bt_size(BinaryTree<T>& bt){
 
 // }
 
-
 template<typename T>
 BinaryTree<T>::~BinaryTree() {
     clear();
